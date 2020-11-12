@@ -1,4 +1,6 @@
 import 'package:clock_app/constants/enums.dart';
+import 'package:clock_app/constants/my_colors.dart';
+import 'package:clock_app/models/alarm_info.dart';
 import 'package:clock_app/models/menu_info.dart';
 
 List<MenuInfo> menuItems = [
@@ -6,4 +8,10 @@ List<MenuInfo> menuItems = [
   MenuInfo(MenuType.alarm, title: 'Alarm', imageSource: 'assets/images/alarm_icon.png'),
   MenuInfo(MenuType.timer, title: 'Timer', imageSource: 'assets/images/timer_icon.png'),
   MenuInfo(MenuType.stopwatch, title: 'Stopwatch', imageSource: 'assets/images/stopwatch_icon.png'),
+];
+
+
+List<AlarmInfo> alarms = [
+  AlarmInfo(DateTime.now().add(Duration(hours: 1)), description: 'Office', gradientColors: GradientColors.sky),
+  AlarmInfo(DateTime.now().add(Duration(hours: 1)), description: 'Sport', gradientColors: GradientColors.sunset)
 ];
