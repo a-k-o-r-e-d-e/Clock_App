@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:clock_app/constants/myColors.dart';
+import 'package:clock_app/constants/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class ClockView extends StatefulWidget {
@@ -57,38 +57,38 @@ class ClockPainter extends CustomPainter {
     var radius = min(centerX, centerY);
 
     var fillBrush = Paint()
-      ..color = Color(0xFF444974);
+      ..color = MyColors.clockBG;
 
     var outlineBrush = Paint()
-      ..color = Color(0xFFEAECFF)
+      ..color = MyColors.clockOutline
       ..style = PaintingStyle.stroke
       ..strokeWidth = size.width / 20;
 
     var centerFillBrush = Paint()
-      ..color = MyColors.offWhite;
+      ..color = MyColors.clockOutline;
 
     var secHandBrush = Paint()
-      ..color = Colors.orange[300]
+      ..color = MyColors.secHandColor
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = size.width /60;
 
     var minHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
+      ..shader = RadialGradient(colors: [MyColors.minHandStatColor, MyColors.minHandEndColor])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = size.width /30;
 
     var hourHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Color(0XFFEA74AB), Color(0xFFC279FB)])
+      ..shader = RadialGradient(colors: [MyColors.hourHandStatColor, MyColors.hourHandEndColor])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = size.width /24;
 
     var dashBrush = Paint()
-      ..color = MyColors.offWhite
+      ..color = MyColors.clockOutline
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1;
