@@ -1,20 +1,37 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'clock_view.dart';
 
-class ClockPage extends StatelessWidget {
+class ClockPage extends StatefulWidget {
+  @override
+  _ClockPageState createState() => _ClockPageState();
+}
+
+class _ClockPageState extends State<ClockPage> {
+  @override
+  void initState() {
+    Timer.periodic(Duration(minutes: 1), (timer) {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-
     DateTime now = DateTime.now();
     var formattedTime = DateFormat('HH:mm').format(now);
     var formattedDate = DateFormat('EEE, d MMM').format(now);
     var timezoneStr = now.timeZoneOffset.toString().split('.').first;
     var offsetSign = '';
 
-    if (!timezoneStr.startsWith('-')) offsetSign = '+';
+    print("ASSSSS");
 
+    if (!timezoneStr.startsWith('-')) offsetSign = '+';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

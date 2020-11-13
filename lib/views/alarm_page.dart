@@ -1,8 +1,12 @@
 import 'package:clock_app/constants/data.dart';
 import 'package:clock_app/constants/my_colors.dart';
+import 'package:clock_app/main.dart';
 import 'package:clock_app/models/alarm_info.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class AlarmPage extends StatelessWidget {
   @override
@@ -24,7 +28,7 @@ class AlarmPage extends StatelessWidget {
                   .map<Widget>((alarm) => buildAlarmCard(alarm))
                   .followedBy([
                 DottedBorder(
-                  strokeWidth: 2,
+                  strokeWidth: 1,
                   color: MyColors.clockOutline,
                   borderType: BorderType.RRect,
                   radius: Radius.circular(24),
@@ -37,7 +41,9 @@ class AlarmPage extends StatelessWidget {
                     child: FlatButton(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 31, vertical: 16),
-                      onPressed: () {},
+                      onPressed: () {
+                        scheduleAlarm();
+                      },
                       child: Column(
                         children: [
                           Image.asset(
@@ -130,5 +136,37 @@ class AlarmPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void scheduleAlarm() async {
+    tz.initializeTimeZones();
+
+    var scheduledNotificationDateTime =
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5));
+
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'alarm_notif', 'alarm_notif', 'Channel for Alarm notifications',
+        icon: 'codex_logo',
+        largeIcon: DrawableResourceAndroidBitmap('codex_logo'));
+
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails(
+        sound: 'a_long_string.wav',
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true);
+
+    var platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        99,
+        'Office',
+        'Good morning! Time for office',
+        scheduledNotificationDateTime,
+        platformChannelSpecifics,
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.wallClockTime);
   }
 }
