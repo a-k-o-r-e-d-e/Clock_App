@@ -2,14 +2,18 @@
 
 A Beautiful Clock App Built Using Flutter
 
-## Getting Started
+<h2> ** ScreenShots </h2>
+<br>
+<h5> Clock Screen </h5>
 
-This project is a starting point for a Flutter application.
+![CLock Screen](/screenshots/clock_screen.png)
 
-A few resources to get you started if this is your first Flutter project:
+<br><hr><hr><br>
+<h5> Alarms Screen </h5>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![Alarms Screen](/screenshots/alarms_screen.png)
+
+<br><hr><hr><br>
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
